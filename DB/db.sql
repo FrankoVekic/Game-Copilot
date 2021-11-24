@@ -7,7 +7,8 @@ id int not null primary key auto_increment,
 email varchar(50) not null,
 password varchar(30) not null,
 name varchar(30) not null,
-surname varchar(30) not null
+surname varchar(30) not null,
+role varchar(15) not null
 );
 
 create table product (
