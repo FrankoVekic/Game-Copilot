@@ -11,6 +11,7 @@ surname varchar(30) not null,
 role varchar(15) not null
 );
 
+
 create table product (
 id int not null primary key auto_increment,
 name varchar(50) not null,
@@ -20,7 +21,7 @@ quantity int not null
 );
 
 
-create table orders (
+create table `order` (
 id int not null primary key auto_increment,
 order_date datetime not null,
 buyer int not null
@@ -28,11 +29,11 @@ buyer int not null
 
 create table product_order(
 id int not null primary key auto_increment,
-orders int not null,
+`order` int not null,
 product int not null,
 quantity int not null
 );
 
-alter table orders add foreign key (buyer) references user(id);
-alter table product_order add foreign key (orders) references orders(id);
+alter table `order` add foreign key (buyer) references user(id);
+alter table product_order add foreign key (`order`) references `order`(id);
 alter table product_order add foreign key (product) references product(id);
