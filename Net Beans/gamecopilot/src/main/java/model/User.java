@@ -3,17 +3,10 @@ package model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 @Entity
-public class User implements Serializable  {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
-    private Integer id;
-    
+public class User extends model.Entity {
+
     @Column(columnDefinition = "varchar(50)", nullable = false)
     private String email;
     @Column(columnDefinition = "char(60)", nullable = false)
@@ -24,14 +17,6 @@ public class User implements Serializable  {
     private String surname;
     @Column(nullable = false)
     private Boolean admin;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getEmail() {
         return email;
@@ -72,8 +57,5 @@ public class User implements Serializable  {
     public void setAdmin(Boolean admin) {
         this.admin = admin;
     }
-    
-    
-    
-    
+
 }
