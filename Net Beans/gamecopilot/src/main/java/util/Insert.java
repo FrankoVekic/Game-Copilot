@@ -3,6 +3,8 @@ package util;
 import com.github.javafaker.Faker;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import model.OrderList;
 import model.Product;
@@ -19,10 +21,24 @@ public class Insert {
 
         List<User> users = generateUsers(faker, session);
         List<Product> products = generateProducts(faker, session);
-        
-        session.getTransaction().commit();
-        
 
+        OrderList o;
+        User u;
+
+        try {
+            for (int i = 0; i < (users.size() - 500); i++) {
+                u = users.get(i);
+                o = new OrderList();
+                o.setOrderDate(new Date());
+                o.setUser(u);
+                Collections.shuffle(users);
+                o.setProducts(new ArrayList<>());
+                o.getProducts().add(products.get(i));
+                session.save(o);
+            }
+        } catch (Exception e) {
+        }
+        session.getTransaction().commit();
     }
 
     private static List<User> generateUsers(Faker faker, Session session) {
