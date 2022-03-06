@@ -36,10 +36,11 @@ public abstract class Controller<T> {
         return entity;
     }
 
-    public T delete() throws GCException {
+    public void delete() throws GCException {
         controlDelete();
-        save();
-        return entity;
+        session.beginTransaction();
+        session.delete(entity);
+        session.getTransaction().commit();
     }
 
     public T getEntity() {
