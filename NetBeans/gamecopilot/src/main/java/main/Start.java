@@ -9,8 +9,8 @@ public class Start {
     public static void main(String[] args) {
         
       //  HibernateUtil.getSession();
-      // Insert.execute();
-       new SplashScreen().setVisible(true);
+      //  Insert.execute();
+     new SplashScreen().setVisible(true);
     }
     
 }

@@ -13,7 +13,7 @@ import java.security.SecureRandom;
 public class Util {
     
     
-    public static String generateRandomPassword(int len)
+    public static String generateRandomPassword()
     {
         // ASCII range – alphanumeric (0-9, a-z, A-Z)
         final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -21,7 +21,7 @@ public class Util {
         SecureRandom random = new SecureRandom();
         StringBuilder sb = new StringBuilder();
  
-        for (int i = 0; i < len; i++)
+        for (int i = 0; i < 10; i++)
         {
             int randomIndex = random.nextInt(chars.length());
             sb.append(chars.charAt(randomIndex));

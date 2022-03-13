@@ -16,7 +16,7 @@ public class User extends model.Entity {
     @Column(columnDefinition = "varchar(30)", nullable = false)
     private String surname;
     @Column(nullable = false)
-    private Boolean admin;
+    private String role;
 
     public String getEmail() {
         return email;
@@ -50,12 +50,12 @@ public class User extends model.Entity {
         this.surname = surname;
     }
 
-    public Boolean getAdmin() {
-        return admin;
+    public String getRole() {
+        return role;
     }
 
-    public void setAdmin(Boolean admin) {
-        this.admin = admin;
+    public void setRole(String role) {
+        this.role = role;
     }
 
 }

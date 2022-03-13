@@ -10,6 +10,7 @@ import model.OrderList;
 import model.Product;
 import model.User;
 import org.hibernate.Session;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class Insert {
 
@@ -47,18 +48,25 @@ public class Insert {
 
         User u;
 
-        for (int i = 0; i < 2000; i++) {
+        for (int i = 0; i < 100; i++) {
             u = new User();
             u.setName(faker.name().firstName());
             u.setSurname(faker.name().lastName());
-            u.setPassword(Util.generateRandomPassword(10));
+            u.setPassword(BCrypt.hashpw(Util.generateRandomPassword(), BCrypt.gensalt()));
             u.setEmail(faker.name().firstName() + "." + faker.name().lastName() + "@gmail.com");
-            u.setAdmin(Boolean.FALSE);
+            u.setRole("oper");
             session.save(u);
             users.add(u);
             System.out.println("User " + u.getId() + ": " + u.getName() + " " + u.getSurname());
         }
-
+        u = new User();
+        u.setName("Franko");
+        u.setSurname("Vekić");
+        u.setEmail("franko.vekic@gmail.com");
+        u.setPassword(BCrypt.hashpw("a", BCrypt.gensalt()));
+        u.setRole("admin");
+        session.save(u);
+        users.add(u);
         return users;
     }
 
