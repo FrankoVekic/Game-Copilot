@@ -3,7 +3,9 @@ package controller;
 import java.util.List;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import javax.persistence.NoResultException;
 import model.User;
+import org.mindrot.jbcrypt.BCrypt;
 import util.GCException;
 
 public class UserController extends Controller<User> {
@@ -97,4 +99,22 @@ public class UserController extends Controller<User> {
         return true;
     }
 
+    public User authorize(String email, String password){
+        
+        User user = null;
+        try {
+            user = (User)session.createQuery("from User where email =:email")
+                .setParameter("email", email).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+        
+        if(user == null){
+            return null;
+        }
+
+        return BCrypt.checkpw(password, user.getPassword()) ? user : null;
+        
+    }
+    
 }

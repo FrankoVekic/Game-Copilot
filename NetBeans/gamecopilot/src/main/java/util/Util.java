@@ -1,17 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package util;
 
 import java.security.SecureRandom;
+import model.User;
 
-/**
- *
- * @author frank
- */
 public class Util {
     
+    public static User user;
+    public static final String APP_TITLE = "Game-Copilot";
+    
+    
+    public static String getTitle(String title) {
+        if (Util.user == null) {
+            return Util.APP_TITLE + title;
+        }
+        return Util.APP_TITLE + " " + title + " " + Util.user.getName() + " "
+                + Util.user.getSurname() + " - " + Util.user.getRole();
+    }
     
     public static String generateRandomPassword()
     {
