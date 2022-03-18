@@ -4,6 +4,8 @@
  */
 package view;
 
+import util.Util;
+
 /**
  *
  * @author frank
@@ -15,6 +17,15 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        settings();
+    }
+    
+    public void settings(){
+        setTitle(Util.getTitle("Menu"));
+        
+        if(Util.user.getRole().equals("oper")){
+            menuAdmin.setVisible(false);
+        }
     }
 
     /**
@@ -29,8 +40,13 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        menuShop = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        menuAdmin = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,12 +62,33 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Shop");
+        menuShop.setText("Shop");
 
         jMenuItem2.setText("Games");
-        jMenu2.add(jMenuItem2);
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        menuShop.add(jMenuItem2);
 
-        jMenuBar1.add(jMenu2);
+        jMenuItem6.setText("Shopping cart");
+        menuShop.add(jMenuItem6);
+
+        jMenuBar1.add(menuShop);
+
+        menuAdmin.setText("Admin");
+
+        jMenuItem3.setText("Manage games");
+        menuAdmin.add(jMenuItem3);
+
+        jMenuItem4.setText("Manage users");
+        menuAdmin.add(jMenuItem4);
+
+        jMenuItem5.setText("Orders");
+        menuAdmin.add(jMenuItem5);
+
+        jMenuBar1.add(menuAdmin);
 
         setJMenuBar(jMenuBar1);
 
@@ -59,11 +96,11 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 587, Short.MAX_VALUE)
+            .addGap(0, 590, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 382, Short.MAX_VALUE)
+            .addGap(0, 384, Short.MAX_VALUE)
         );
 
         pack();
@@ -74,14 +111,23 @@ public class Menu extends javax.swing.JFrame {
        dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        new ShopGamesWindow().setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
    
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenu menuAdmin;
+    private javax.swing.JMenu menuShop;
     // End of variables declaration//GEN-END:variables
 }
