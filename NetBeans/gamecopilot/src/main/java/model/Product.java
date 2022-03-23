@@ -48,4 +48,10 @@ public class Product extends model.Entity {
         this.quantity = quantity;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    
 }

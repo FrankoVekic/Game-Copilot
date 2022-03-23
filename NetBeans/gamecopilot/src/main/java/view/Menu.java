@@ -92,6 +92,11 @@ public class Menu extends javax.swing.JFrame {
         menuAdmin.setText("Admin");
 
         jMenuItem3.setText("Manage games");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         menuAdmin.add(jMenuItem3);
 
         jMenuItem4.setText("Manage users");
@@ -131,6 +136,10 @@ public class Menu extends javax.swing.JFrame {
         dispose();
         new Authorization().setVisible(true);
     }//GEN-LAST:event_logOutActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        new ManageGamesWindow().setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
    
   

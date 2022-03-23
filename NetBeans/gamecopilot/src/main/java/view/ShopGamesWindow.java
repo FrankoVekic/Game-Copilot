@@ -150,6 +150,7 @@ public class ShopGamesWindow extends javax.swing.JFrame {
         gdw.txtTitle.setText(title);
         gdw.txtPrice.setText(price);
         
+        
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void btnCartViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCartViewActionPerformed
