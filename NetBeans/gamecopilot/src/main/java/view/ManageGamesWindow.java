@@ -5,10 +5,13 @@
 package view;
 
 import controller.ProductController;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import model.Product;
+import util.GCException;
 
 /**
  *
@@ -18,7 +21,7 @@ public class ManageGamesWindow extends javax.swing.JFrame {
 
     private ProductController controller;
     private DecimalFormat nf;
-    
+
     public ManageGamesWindow() {
         initComponents();
         controller = new ProductController();
@@ -26,16 +29,16 @@ public class ManageGamesWindow extends javax.swing.JFrame {
         load();
     }
 
-    public void load(){
+    public void load() {
         DefaultListModel<Product> products = new DefaultListModel<>();
         List<Product> entities = controller.read();
-        
-        for(Product p : entities){
+
+        for (Product p : entities) {
             products.addElement(p);
         }
         lstEntities.setModel(products);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,9 +59,9 @@ public class ManageGamesWindow extends javax.swing.JFrame {
         txtPrice = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtQuantity = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnChange = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -92,11 +95,16 @@ public class ManageGamesWindow extends javax.swing.JFrame {
 
         txtQuantity.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jButton1.setText("Add");
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Change");
+        btnChange.setText("Change");
 
-        jButton3.setText("Delete");
+        btnDelete.setText("Delete");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,11 +135,11 @@ public class ManageGamesWindow extends javax.swing.JFrame {
                                             .addComponent(txtQuantity, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnChange, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -163,9 +171,9 @@ public class ManageGamesWindow extends javax.swing.JFrame {
                                 .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3))))
+                            .addComponent(btnAdd)
+                            .addComponent(btnChange)
+                            .addComponent(btnDelete))))
                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
@@ -177,21 +185,48 @@ public class ManageGamesWindow extends javax.swing.JFrame {
         if (evt.getValueIsAdjusting() || lstEntities.getSelectedValue() == null) {
             return;
         }
-        
+
         controller.setEntity(lstEntities.getSelectedValue());
         var p = controller.getEntity();
         txtTitle.setText(p.getName());
         txtDescription.setText(p.getDescription());
-        txtPrice.setText(p.getPrice().toString());
+        txtPrice.setText(nf.format(p.getPrice()).toString());
         txtQuantity.setText(p.getQuantity().toString());
     }//GEN-LAST:event_lstEntitiesValueChanged
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        try {
+            controller.setEntity(new Product());
+            dataVerification();
+            controller.create();
+            load();
+        } catch (GCException e) {
+            JOptionPane.showMessageDialog(getRootPane(), e.getMessage());
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void dataVerification() {
+        var p = controller.getEntity();
+        p.setName(txtTitle.getText());
+        p.setDescription(txtDescription.getText());
+        try {
+            p.setPrice(new BigDecimal(nf.parse(txtPrice.getText()).toString()));
+        } catch (Exception e) {
+            p.setPrice(BigDecimal.ZERO);
+        }
+        try {
+            p.setQuantity(Integer.parseInt(txtQuantity.getText()));
+        } catch (Exception e) {
+            p.setQuantity(1);
+        }
+
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnChange;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
