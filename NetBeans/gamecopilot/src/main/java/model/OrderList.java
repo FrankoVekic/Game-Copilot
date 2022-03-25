@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-@Entity(name = "Orders")
+@Entity(name = "orders")
 public class OrderList extends model.Entity {
 
     @Column(nullable = false)
@@ -16,6 +16,7 @@ public class OrderList extends model.Entity {
     private User user;
     @ManyToMany
     private List<Product> products;
+   
 
     public List<Product> getProducts() {
         return products;
@@ -41,4 +42,6 @@ public class OrderList extends model.Entity {
         this.user = user;
     }
 
+
+    
 }

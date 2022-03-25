@@ -27,7 +27,7 @@ public class Insert {
         User u;
 
         try {
-            for (int i = 0; i < (users.size() - 500); i++) {
+            for (int i = 0; i < (users.size() - 50); i++) {
                 u = users.get(i);
                 o = new OrderList();
                 o.setOrderDate(new Date());
@@ -76,7 +76,7 @@ public class Insert {
 
         Product p;
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 100; i++) {
             p = new Product();
             p.setName(faker.esports().game());
             p.setPrice(new BigDecimal(Math.random() * (100 - 100) + 100));

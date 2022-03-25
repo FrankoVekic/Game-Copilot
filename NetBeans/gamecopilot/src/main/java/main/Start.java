@@ -8,8 +8,8 @@ public class Start {
     
     public static void main(String[] args) {
         
-      //  HibernateUtil.getSession();
-      //  Insert.execute();
+       // HibernateUtil.getSession();
+       // Insert.execute();
      new SplashScreen().setVisible(true);
     }
     
