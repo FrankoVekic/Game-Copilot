@@ -58,4 +58,10 @@ public class User extends model.Entity {
         this.role = role;
     }
 
+    @Override
+    public String toString() {
+        return name + " " + surname;
+    }
+
+    
 }

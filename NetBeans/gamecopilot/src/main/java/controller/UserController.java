@@ -14,6 +14,9 @@ public class UserController extends Controller<User> {
     public List<User> read() {
         return session.createQuery("from User").list();
     }
+    public List<String> readRole(){
+        return session.createQuery("select p.role from User p").list();
+    }
 
     @Override
     protected void controlCreate() throws GCException {
