@@ -15,7 +15,7 @@ public class Product extends model.Entity {
     private String description;
     @Column(nullable = false)
     private Integer quantity;
-
+    
     public String getName() {
         return name;
     }
@@ -52,6 +52,5 @@ public class Product extends model.Entity {
     public String toString() {
         return name;
     }
-
     
 }

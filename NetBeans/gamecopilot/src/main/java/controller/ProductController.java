@@ -18,11 +18,13 @@ public class ProductController extends Controller<Product> {
         checkDescription();
         checkPrice();
         checkQuantity();
+        controlNewTitle();
     }
 
     @Override
     protected void controlUpdate() throws GCException {
-      
+      controlCreate();
+      controlChangeTitle();
     }
 
     @Override
@@ -82,6 +84,28 @@ public class ProductController extends Controller<Product> {
         }
         if (entity.getQuantity() > 1000) {
             throw new GCException("Max quantity is 1000.");
+        }
+    }
+
+    private void controlNewTitle() throws GCException {
+        
+        List<Product> productList = session.createQuery("from Product p "
+                + "where p.name=:name")
+                .setParameter("name", entity.getName()).list();
+
+        if (productList != null && productList.size() > 0) {
+            throw new GCException("This title is already in use.");
+        }
+    }
+
+    private void controlChangeTitle() throws GCException {
+        List<Product> productList = session.createQuery("from Product p "
+                + "where p.name=:name and p.id!=:id")
+                .setParameter("name", entity.getName())
+                .setParameter("id", entity.getId()).list();
+
+        if (productList != null && productList.size() > 0) {
+            throw new GCException("This title is already in use.");
         }
     }
 

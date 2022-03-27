@@ -1,8 +1,10 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User extends model.Entity {
@@ -18,6 +20,9 @@ public class User extends model.Entity {
     @Column(nullable = false)
     private String role;
 
+    @OneToMany(mappedBy = "user")
+    private List<OrderList> orders;
+    
     public String getEmail() {
         return email;
     }
@@ -61,6 +66,14 @@ public class User extends model.Entity {
     @Override
     public String toString() {
         return name + " " + surname;
+    }
+
+    public List<OrderList> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<OrderList> orders) {
+        this.orders = orders;
     }
 
     

@@ -202,6 +202,12 @@ public class ManageUsersWindow extends javax.swing.JFrame {
             cmbRole.setSelectedItem(p.getRole());
         }
         cmbRole.setSelectedItem(p.getRole());
+        
+        if(p.getOrders()!=null && p.getOrders().size()>0){
+            btnDelete.setEnabled(false);
+        }else {
+            btnDelete.setEnabled(true);
+        }
 
     }//GEN-LAST:event_lstEntitiesValueChanged
 

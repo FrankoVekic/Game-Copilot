@@ -208,6 +208,8 @@ public class ManageGamesWindow extends javax.swing.JFrame {
         txtDescription.setText(p.getDescription());
         txtPrice.setText(nf.format(p.getPrice()).toString());
         txtQuantity.setText(p.getQuantity().toString());
+        
+
     }//GEN-LAST:event_lstEntitiesValueChanged
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
