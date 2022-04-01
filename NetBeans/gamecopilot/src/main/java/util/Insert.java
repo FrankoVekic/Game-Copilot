@@ -32,6 +32,9 @@ public class Insert {
                 o = new OrderList();
                 o.setOrderDate(new Date());
                 o.setUser(u);
+                o.setCity(faker.address().city());
+                o.setAddress(faker.address().fullAddress());
+                o.setCountry(faker.address().city());
                 Collections.shuffle(users);
                 o.setProducts(new ArrayList<>());
                 o.getProducts().add(products.get(i));

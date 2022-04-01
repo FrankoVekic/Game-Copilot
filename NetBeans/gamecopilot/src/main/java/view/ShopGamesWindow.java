@@ -129,28 +129,31 @@ public class ShopGamesWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     GameDataWindow gdw = new GameDataWindow();
-    
+
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-        int selectedRowIndex = jTable1.getSelectedRow();
-        
-        txtTitle.setText(model.getValueAt(selectedRowIndex, 0).toString());
-        txtDesc.setText(model.getValueAt(selectedRowIndex, 1).toString());
-        txtPrice.setText(model.getValueAt(selectedRowIndex, 2).toString());
-        
-        gdw.setVisible(true);
-        int selectedRow = jTable1.getSelectedRow();
-        TableModel tm = jTable1.getModel();
-        
-        String title = tm.getValueAt(selectedRow, 0).toString();
-        String description = tm.getValueAt(selectedRow, 1).toString();
-        String price = tm.getValueAt(selectedRow, 2).toString();
-        String quantity = tm.getValueAt(selectedRow, 3).toString();
-        
-        gdw.txtTitle.setText(title);
-        gdw.txtPrice.setText(price);
-        
-        
+        if (evt.getClickCount() == 2) {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            int selectedRowIndex = jTable1.getSelectedRow();
+
+            txtTitle.setText(model.getValueAt(selectedRowIndex, 0).toString());
+            txtDesc.setText(model.getValueAt(selectedRowIndex, 1).toString());
+            txtPrice.setText(model.getValueAt(selectedRowIndex, 2).toString());
+
+            gdw.setVisible(true);
+            int selectedRow = jTable1.getSelectedRow();
+            TableModel tm = jTable1.getModel();
+
+            String title = tm.getValueAt(selectedRow, 0).toString();
+            String description = tm.getValueAt(selectedRow, 1).toString();
+            String price = tm.getValueAt(selectedRow, 2).toString();
+            String quantity = tm.getValueAt(selectedRow, 3).toString();
+
+            gdw.txtTitle.setText(title);
+            gdw.txtPrice.setText(price);
+            gdw.txtDescription.setText(description);
+        }
+
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void btnCartViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCartViewActionPerformed

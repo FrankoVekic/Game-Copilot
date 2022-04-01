@@ -10,6 +10,12 @@ import javax.persistence.ManyToOne;
 @Entity(name = "orders")
 public class OrderList extends model.Entity {
 
+    @Column(columnDefinition = "varchar(100)", nullable = false)
+    private String address;
+    @Column(columnDefinition = "varchar(35)", nullable = false)
+    private String city;
+    @Column(columnDefinition = "varchar(35)", nullable = false)
+    private String country;
     @Column(nullable = false)
     private Date orderDate;
     @ManyToOne
@@ -40,6 +46,30 @@ public class OrderList extends model.Entity {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
 

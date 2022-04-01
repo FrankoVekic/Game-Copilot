@@ -29,7 +29,9 @@ public class ProductController extends Controller<Product> {
 
     @Override
     protected void controlDelete() throws GCException {
-      
+      if(entity.getOrders()!=null && entity.getOrders().size()>0){
+          throw new GCException("You can not delete this product.");
+      }
     }
 
     private void checkName() throws GCException {

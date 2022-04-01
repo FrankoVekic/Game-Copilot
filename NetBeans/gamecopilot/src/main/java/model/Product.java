@@ -1,8 +1,10 @@
 package model;
 
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Product extends model.Entity {
@@ -15,6 +17,9 @@ public class Product extends model.Entity {
     private String description;
     @Column(nullable = false)
     private Integer quantity;
+    
+    @ManyToMany(mappedBy = "products")
+    private List<OrderList>orders;
     
     public String getName() {
         return name;
@@ -52,5 +57,14 @@ public class Product extends model.Entity {
     public String toString() {
         return name;
     }
+
+    public List<OrderList> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<OrderList> orders) {
+        this.orders = orders;
+    }
+    
     
 }

@@ -85,6 +85,11 @@ public class Menu extends javax.swing.JFrame {
         menuShop.add(jMenuItem2);
 
         jMenuItem6.setText("Shopping cart");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         menuShop.add(jMenuItem6);
 
         jMenuBar1.add(menuShop);
@@ -108,6 +113,11 @@ public class Menu extends javax.swing.JFrame {
         menuAdmin.add(jMenuItem4);
 
         jMenuItem5.setText("Orders");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         menuAdmin.add(jMenuItem5);
 
         jMenuBar1.add(menuAdmin);
@@ -149,6 +159,14 @@ public class Menu extends javax.swing.JFrame {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         new ManageUsersWindow().setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        new ShoppingCartWindow().setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        new OrdersWindow().setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
    
   

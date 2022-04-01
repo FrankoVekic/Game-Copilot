@@ -242,6 +242,7 @@ public class ManageUsersWindow extends javax.swing.JFrame {
         try {
             controller.delete();
             load();
+            JOptionPane.showMessageDialog(getRootPane(), "You successfully deleted: " + controller.getEntity().getName());
         } catch (GCException ex) {
             JOptionPane.showMessageDialog(getRootPane(), ex.getMessage());
         }

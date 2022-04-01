@@ -4,6 +4,7 @@ import java.util.List;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.persistence.NoResultException;
+import model.Product;
 import model.User;
 import org.mindrot.jbcrypt.BCrypt;
 import util.GCException;
@@ -24,12 +25,14 @@ public class UserController extends Controller<User> {
         checkName();
         checkSurname();
         checkPassword();
+        checkNewEmail();
 
     }
 
     @Override
     protected void controlUpdate() throws GCException {
-
+        
+        checkUpdateEmail();
     }
 
     @Override
@@ -79,7 +82,7 @@ public class UserController extends Controller<User> {
         if (entity.getPassword().trim().length() < 6) {
             throw new GCException("Password too short.");
         }
-        if (entity.getPassword().trim().length() > 30) {
+        if (entity.getPassword().trim().length() > 60) {
             throw new GCException("Password too long.");
         }
         if (!this.validPassword(entity.getPassword())) {
@@ -118,6 +121,28 @@ public class UserController extends Controller<User> {
 
         return BCrypt.checkpw(password, user.getPassword()) ? user : null;
         
+    }
+
+    private void checkNewEmail() throws GCException {
+           
+        List<User> userList = session.createQuery("from User u "
+                + "where u.email=:email")
+                .setParameter("email", entity.getEmail()).list();
+
+        if (userList != null && userList.size() > 0) {
+            throw new GCException("This email is already in use.");
+        }
+    }
+
+    private void checkUpdateEmail() throws GCException {
+         List<Product> productList = session.createQuery("from User u "
+                + "where u.name=:name and u.id!=:id")
+                .setParameter("name", entity.getName())
+                .setParameter("id", entity.getId()).list();
+
+        if (productList != null && productList.size() > 0) {
+            throw new GCException("This EMAIL is already in use.");
+        }
     }
     
 }

@@ -10,7 +10,7 @@ public class Start {
         
       // HibernateUtil.getSession();
       // Insert.execute();
-         new SplashScreen().setVisible(true);
+       new SplashScreen().setVisible(true);
     }
     
 }
