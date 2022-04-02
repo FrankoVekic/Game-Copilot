@@ -15,6 +15,7 @@ public class ProductController extends Controller<Product> {
     @Override
     protected void controlCreate() throws GCException {
         checkName();
+        controlNewTitle();
         checkDescription();
         checkPrice();
         checkQuantity();
@@ -23,29 +24,33 @@ public class ProductController extends Controller<Product> {
 
     @Override
     protected void controlUpdate() throws GCException {
-      controlCreate();
-      controlChangeTitle();
+        checkName();
+        controlChangeTitle();
+        checkPrice();
+        checkDescription();
+        checkQuantity();
+        controlChangeTitle();
     }
 
     @Override
     protected void controlDelete() throws GCException {
-      if(entity.getOrders()!=null && entity.getOrders().size()>0){
-          throw new GCException("You can not delete this product.");
-      }
+        if (entity.getOrders() != null && entity.getOrders().size() > 0) {
+            throw new GCException("You can not delete this product.");
+        }
     }
 
     private void checkName() throws GCException {
 
         if (entity.getName() == null || entity.getName().trim().isEmpty()) {
-            throw new GCException("Name is required.");
+            throw new GCException("Title is required.");
         }
 
         if (entity.getName().trim().length() > 40) {
-            throw new GCException("Name can have up to 40 characters.");
+            throw new GCException("Title can have up to 40 characters.");
         }
 
         if (entity.getName().trim().length() < 3) {
-            throw new GCException("Name must have atleast 3 characters.");
+            throw new GCException("Title must have atleast 3 characters.");
         }
     }
 
@@ -90,7 +95,7 @@ public class ProductController extends Controller<Product> {
     }
 
     private void controlNewTitle() throws GCException {
-        
+
         List<Product> productList = session.createQuery("from Product p "
                 + "where p.name=:name")
                 .setParameter("name", entity.getName()).list();

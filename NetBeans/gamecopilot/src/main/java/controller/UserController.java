@@ -31,8 +31,10 @@ public class UserController extends Controller<User> {
 
     @Override
     protected void controlUpdate() throws GCException {
-        
+        checkEmail();
         checkUpdateEmail();
+        checkName();
+        checkSurname();
     }
 
     @Override
@@ -62,6 +64,9 @@ public class UserController extends Controller<User> {
         if (entity.getName().trim().length() > 50) {
             throw new GCException("Name is too long.");
         }
+        if(entity.getName().trim().length()<=3){
+            throw new GCException("Name is too short (min. 3 characters).");
+        }
 
     }
 
@@ -71,6 +76,9 @@ public class UserController extends Controller<User> {
         }
         if (entity.getSurname().trim().length() > 50) {
             throw new GCException("Surname is too long.");
+        }
+        if(entity.getSurname().trim().length()<=3){
+            throw new GCException("Surname is too short (min. 3 characters).");
         }
     }
 

@@ -71,7 +71,5 @@ public class OrderList extends model.Entity {
     public void setCountry(String country) {
         this.country = country;
     }
-
-
     
 }
