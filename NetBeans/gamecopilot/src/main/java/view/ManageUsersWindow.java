@@ -10,7 +10,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import model.User;
-import util.GCException;
+import util.CopilotException;
 
 /**
  *
@@ -221,7 +221,7 @@ public class ManageUsersWindow extends javax.swing.JFrame {
             controller.update();
             load();
             JOptionPane.showMessageDialog(getRootPane(), "You successfully updated: " + controller.getEntity().getName());
-        } catch (GCException e) {
+        } catch (CopilotException e) {
             JOptionPane.showMessageDialog(getRootPane(), e.getMessage());
         }
     }//GEN-LAST:event_btnChangeActionPerformed
@@ -243,7 +243,7 @@ public class ManageUsersWindow extends javax.swing.JFrame {
             controller.delete();
             load();
             JOptionPane.showMessageDialog(getRootPane(), "You successfully deleted: " + controller.getEntity().getName());
-        } catch (GCException ex) {
+        } catch (CopilotException ex) {
             JOptionPane.showMessageDialog(getRootPane(), ex.getMessage());
         }
     }//GEN-LAST:event_btnDeleteActionPerformed

@@ -11,7 +11,7 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import model.Product;
-import util.GCException;
+import util.CopilotException;
 
 /**
  *
@@ -218,7 +218,7 @@ public class ManageGamesWindow extends javax.swing.JFrame {
             dataVerification();
             controller.create();
             load();
-        } catch (GCException e) {
+        } catch (CopilotException e) {
             JOptionPane.showMessageDialog(getRootPane(), e.getMessage());
         }
     }//GEN-LAST:event_btnAddActionPerformed
@@ -233,7 +233,7 @@ public class ManageGamesWindow extends javax.swing.JFrame {
             controller.update();
             load();
             JOptionPane.showMessageDialog(getRootPane(), "You successfully updated: " + controller.getEntity().getName());
-        } catch (GCException e) {
+        } catch (CopilotException e) {
             JOptionPane.showMessageDialog(getRootPane(), e.getMessage());
         }
     }//GEN-LAST:event_btnChangeActionPerformed
@@ -254,7 +254,7 @@ public class ManageGamesWindow extends javax.swing.JFrame {
         try {
             controller.delete();
             load();
-        } catch (GCException ex) {
+        } catch (CopilotException ex) {
             JOptionPane.showMessageDialog(getRootPane(), ex.getMessage());
         }
     }//GEN-LAST:event_btnDeleteActionPerformed

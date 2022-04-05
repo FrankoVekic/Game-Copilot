@@ -1,10 +1,10 @@
 package util;
 
-public class GCException extends Exception {
+public class CopilotException extends Exception {
 
     private String message;
 
-    public GCException(String message) {
+    public CopilotException(String message) {
         super(message);
         this.message = message;
     }

@@ -7,7 +7,7 @@ import javax.persistence.NoResultException;
 import model.Product;
 import model.User;
 import org.mindrot.jbcrypt.BCrypt;
-import util.GCException;
+import util.CopilotException;
 
 public class UserController extends Controller<User> {
 
@@ -20,17 +20,16 @@ public class UserController extends Controller<User> {
     }
 
     @Override
-    protected void controlCreate() throws GCException {
+    protected void controlCreate() throws CopilotException {
         checkEmail();
         checkName();
         checkSurname();
         checkPassword();
         checkNewEmail();
-
     }
 
     @Override
-    protected void controlUpdate() throws GCException {
+    protected void controlUpdate() throws CopilotException {
         checkEmail();
         checkUpdateEmail();
         checkName();
@@ -38,63 +37,63 @@ public class UserController extends Controller<User> {
     }
 
     @Override
-    protected void controlDelete() throws GCException {
+    protected void controlDelete() throws CopilotException {
 
     }
 
-    private void checkEmail() throws GCException {
+    private void checkEmail() throws CopilotException {
 
         if (entity.getEmail() == null || entity.getEmail().trim().isEmpty()) {
-            throw new GCException("Invalid email.");
+            throw new CopilotException("Invalid email.");
         }
 
         try {
             InternetAddress emailAddr = new InternetAddress(entity.getEmail());
             emailAddr.validate();
         } catch (AddressException ex) {
-            throw new GCException("Email is invalid.");
+            throw new CopilotException("Email is invalid.");
         }
     }
 
-    private void checkName() throws GCException {
+    private void checkName() throws CopilotException {
 
         if (entity.getName() == null || entity.getName().trim().isEmpty()) {
-            throw new GCException("Invalid name.");
+            throw new CopilotException("Invalid name.");
         }
         if (entity.getName().trim().length() > 50) {
-            throw new GCException("Name is too long.");
+            throw new CopilotException("Name is too long.");
         }
-        if(entity.getName().trim().length()<=3){
-            throw new GCException("Name is too short (min. 3 characters).");
+        if(entity.getName().trim().length()<3){
+            throw new CopilotException("Name is too short (min. 3 characters).");
         }
 
     }
 
-    private void checkSurname() throws GCException {
+    private void checkSurname() throws CopilotException {
         if (entity.getSurname() == null || entity.getSurname().trim().isEmpty()) {
-            throw new GCException("Invalid surname.");
+            throw new CopilotException("Invalid surname.");
         }
         if (entity.getSurname().trim().length() > 50) {
-            throw new GCException("Surname is too long.");
+            throw new CopilotException("Surname is too long.");
         }
         if(entity.getSurname().trim().length()<=3){
-            throw new GCException("Surname is too short (min. 3 characters).");
+            throw new CopilotException("Surname is too short (min. 3 characters).");
         }
     }
 
-    private void checkPassword() throws GCException {
+    private void checkPassword() throws CopilotException {
 
         if (entity.getPassword() == null || entity.getPassword().trim().isEmpty()) {
-            throw new GCException("Invalid password.");
+            throw new CopilotException("Invalid password.");
         }
         if (entity.getPassword().trim().length() < 6) {
-            throw new GCException("Password too short.");
+            throw new CopilotException("Password too short.");
         }
         if (entity.getPassword().trim().length() > 60) {
-            throw new GCException("Password too long.");
+            throw new CopilotException("Password too long.");
         }
         if (!this.validPassword(entity.getPassword())) {
-            throw new GCException("Password must contain atleast 1 upper letter and 1 number.");
+            throw new CopilotException("Password must contain atleast 1 upper letter and 1 number.");
         }
 
     }
@@ -131,25 +130,25 @@ public class UserController extends Controller<User> {
         
     }
 
-    private void checkNewEmail() throws GCException {
+    private void checkNewEmail() throws CopilotException {
            
         List<User> userList = session.createQuery("from User u "
                 + "where u.email=:email")
                 .setParameter("email", entity.getEmail()).list();
 
         if (userList != null && userList.size() > 0) {
-            throw new GCException("This email is already in use.");
+            throw new CopilotException("This email is already in use.");
         }
     }
 
-    private void checkUpdateEmail() throws GCException {
+    private void checkUpdateEmail() throws CopilotException {
          List<Product> productList = session.createQuery("from User u "
                 + "where u.name=:name and u.id!=:id")
                 .setParameter("name", entity.getName())
                 .setParameter("id", entity.getId()).list();
 
         if (productList != null && productList.size() > 0) {
-            throw new GCException("This EMAIL is already in use.");
+            throw new CopilotException("This EMAIL is already in use.");
         }
     }
     

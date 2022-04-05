@@ -1,6 +1,8 @@
 D:\jp25\NetBeans\gamecopilot\src\main\java\view\Authorization.java
 D:\jp25\NetBeans\gamecopilot\src\main\java\model\Entity.java
 D:\jp25\NetBeans\gamecopilot\src\main\java\model\User.java
+D:\jp25\NetBeans\gamecopilot\src\main\java\view\ManageGamesWindow.java
+D:\jp25\NetBeans\gamecopilot\src\main\java\view\OrdersWindow.java
 D:\jp25\NetBeans\gamecopilot\src\main\java\controller\Controller.java
 D:\jp25\NetBeans\gamecopilot\src\main\java\util\GCException.java
 D:\jp25\NetBeans\gamecopilot\src\main\java\util\HibernateUtil.java
@@ -8,10 +10,13 @@ D:\jp25\NetBeans\gamecopilot\src\main\java\main\Start.java
 D:\jp25\NetBeans\gamecopilot\src\main\java\util\Insert.java
 D:\jp25\NetBeans\gamecopilot\src\main\java\view\SplashScreen.java
 D:\jp25\NetBeans\gamecopilot\src\main\java\view\Menu.java
+D:\jp25\NetBeans\gamecopilot\src\main\java\view\GameDataWindow.java
 D:\jp25\NetBeans\gamecopilot\src\main\java\controller\OrderController.java
 D:\jp25\NetBeans\gamecopilot\src\main\java\controller\ProductController.java
 D:\jp25\NetBeans\gamecopilot\src\main\java\util\Util.java
 D:\jp25\NetBeans\gamecopilot\src\main\java\model\OrderList.java
 D:\jp25\NetBeans\gamecopilot\src\main\java\view\ShopGamesWindow.java
+D:\jp25\NetBeans\gamecopilot\src\main\java\view\ShoppingCartWindow.java
 D:\jp25\NetBeans\gamecopilot\src\main\java\model\Product.java
+D:\jp25\NetBeans\gamecopilot\src\main\java\view\ManageUsersWindow.java
 D:\jp25\NetBeans\gamecopilot\src\main\java\controller\UserController.java

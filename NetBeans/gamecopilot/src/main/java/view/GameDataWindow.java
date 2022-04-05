@@ -60,9 +60,11 @@ public class GameDataWindow extends javax.swing.JFrame {
 
         txtPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        txtDescription.setEditable(false);
         txtDescription.setColumns(20);
         txtDescription.setLineWrap(true);
         txtDescription.setRows(5);
+        txtDescription.setEnabled(false);
         jScrollPane1.setViewportView(txtDescription);
 
         btnAddToCart.setText("Add To Cart");

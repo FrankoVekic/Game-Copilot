@@ -2,7 +2,7 @@ package controller;
 
 import java.util.List;
 import model.OrderList;
-import util.GCException;
+import util.CopilotException;
 
 
 public class OrderController extends Controller<OrderList> {
@@ -13,17 +13,17 @@ public class OrderController extends Controller<OrderList> {
     }
 
     @Override
-    protected void controlCreate() throws GCException {
+    protected void controlCreate() throws CopilotException {
         
     }
 
     @Override
-    protected void controlUpdate() throws GCException {
+    protected void controlUpdate() throws CopilotException {
        
     }
 
     @Override
-    protected void controlDelete() throws GCException {
+    protected void controlDelete() throws CopilotException {
        
     }
     

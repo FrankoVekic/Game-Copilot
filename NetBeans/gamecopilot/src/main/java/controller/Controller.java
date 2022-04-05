@@ -2,7 +2,7 @@ package controller;
 
 import java.util.List;
 import org.hibernate.Session;
-import util.GCException;
+import util.CopilotException;
 import util.HibernateUtil;
 
 public abstract class Controller<T> {
@@ -12,11 +12,11 @@ public abstract class Controller<T> {
 
     public abstract List<T> read();
 
-    protected abstract void controlCreate() throws GCException;
+    protected abstract void controlCreate() throws CopilotException;
 
-    protected abstract void controlUpdate() throws GCException;
+    protected abstract void controlUpdate() throws CopilotException;
 
-    protected abstract void controlDelete() throws GCException;
+    protected abstract void controlDelete() throws CopilotException;
 
     public Controller() {
 
@@ -24,19 +24,19 @@ public abstract class Controller<T> {
 
     }
 
-    public T create() throws GCException {
+    public T create() throws CopilotException {
         controlCreate();
         save();
         return entity;
     }
 
-    public T update() throws GCException {
+    public T update() throws CopilotException {
         controlUpdate();
         save();
         return entity;
     }
 
-    public void delete() throws GCException {
+    public void delete() throws CopilotException {
         controlDelete();
         session.beginTransaction();
         session.delete(entity);

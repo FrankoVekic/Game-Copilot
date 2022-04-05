@@ -52,7 +52,7 @@ public class ShopGamesWindow extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title", "Description", "Price", "Quantity"
+                "Title", "Description", "Price", "In Stock"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -149,8 +149,9 @@ public class ShopGamesWindow extends javax.swing.JFrame {
             String quantity = tm.getValueAt(selectedRow, 3).toString();
 
             gdw.txtTitle.setText(title);
-            gdw.txtPrice.setText(price);
+            gdw.txtPrice.setText("$"+price);
             gdw.txtDescription.setText(description);
+          
         }
 
 
