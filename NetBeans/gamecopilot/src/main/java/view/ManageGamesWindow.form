@@ -24,47 +24,44 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="308" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="268" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="191" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jLabel2" min="-2" pref="86" max="-2" attributes="0"/>
+                  <Component id="jLabel3" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
+                  <Component id="jLabel4" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="308" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel2" min="-2" pref="86" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="txtPrice" min="-2" pref="86" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="txtQuantity" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jLabel5" alignment="0" pref="86" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btnAdd" min="-2" pref="100" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnChange" min="-2" pref="100" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnDelete" min="-2" pref="100" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtTitle" alignment="0" pref="253" max="32767" attributes="0"/>
-                                  </Group>
+                              <Component id="txtPrice" min="-2" pref="86" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="txtQuantity" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLabel5" alignment="0" pref="86" max="32767" attributes="0"/>
                               </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btnAdd" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnChange" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnDelete" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtTitle" alignment="0" pref="253" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace pref="36" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="242" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="235" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -118,7 +115,7 @@
           <Font name="SansSerif" size="24" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Manage Games"/>
+        <Property name="text" type="java.lang.String" value="MANAGE GAMES"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder/>
