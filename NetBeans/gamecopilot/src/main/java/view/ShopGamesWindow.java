@@ -14,7 +14,9 @@ public class ShopGamesWindow extends javax.swing.JFrame {
     public ShopGamesWindow() {
         initComponents();
         pc = new ProductController();
-        load();
+        
+        ProductTableModel m = new ProductTableModel(pc.read());
+        jTable1.setModel(m);
 
     }
 
@@ -55,12 +57,12 @@ public class ShopGamesWindow extends javax.swing.JFrame {
                 "Title", "Description", "Price", "In Stock"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
             }
         });
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
