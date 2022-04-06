@@ -76,7 +76,7 @@ public class UserController extends Controller<User> {
         if (entity.getSurname().trim().length() > 50) {
             throw new CopilotException("Surname is too long.");
         }
-        if(entity.getSurname().trim().length()<=3){
+        if(entity.getSurname().trim().length()<3){
             throw new CopilotException("Surname is too short (min. 3 characters).");
         }
     }
@@ -90,10 +90,7 @@ public class UserController extends Controller<User> {
             throw new CopilotException("Password too short.");
         }
         if (entity.getPassword().trim().length() > 60) {
-            throw new CopilotException("Password too long.");
-        }
-        if (!this.validPassword(entity.getPassword())) {
-            throw new CopilotException("Password must contain atleast 1 upper letter and 1 number.");
+            throw new CopilotException("Password is too long.");
         }
 
     }
@@ -103,13 +100,13 @@ public class UserController extends Controller<User> {
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if (Character.isUpperCase(c)) {
-                return false;
+                return true;
             }
             if (Character.isDigit(c)) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public User authorize(String email, String password){
@@ -152,4 +149,22 @@ public class UserController extends Controller<User> {
         }
     }
     
+    public User register(String email){
+        
+          User user = null;
+        try {
+            user = (User)session.createQuery("from User where email =:email")
+                .setParameter("email", email).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+        
+        if(user == null){
+            return null;
+        }
+
+        return user;
+        
+        
+    }
 }

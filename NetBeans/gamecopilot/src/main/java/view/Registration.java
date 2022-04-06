@@ -2,17 +2,24 @@ package view;
 
 import controller.UserController;
 import java.awt.event.KeyEvent;
+import java.util.Arrays;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.swing.JOptionPane;
+import model.User;
+import org.mindrot.jbcrypt.BCrypt;
+import util.CopilotException;
 import util.Util;
 
 public class Registration extends javax.swing.JFrame {
 
     private UserController userController;
-    
+
     public Registration() {
         initComponents();
         userController = new UserController();
         setTitle(Util.getTitle(" Registration"));
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -87,6 +94,11 @@ public class Registration extends javax.swing.JFrame {
         });
 
         btnRegister.setText("Register");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -174,7 +186,7 @@ public class Registration extends javax.swing.JFrame {
         }
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             txtSurname.requestFocus();
-    }      
+        }
     }//GEN-LAST:event_txtNameKeyPressed
 
     private void txtSurnameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSurnameKeyPressed
@@ -183,7 +195,7 @@ public class Registration extends javax.swing.JFrame {
         }
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             txtEmail.requestFocus();
-    }      
+        }
     }//GEN-LAST:event_txtSurnameKeyPressed
 
     private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
@@ -192,26 +204,30 @@ public class Registration extends javax.swing.JFrame {
         }
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             txtPassword.requestFocus();
-    }      
+        }
     }//GEN-LAST:event_txtEmailKeyPressed
 
     private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
-        if (txtPassword.toString().trim().isEmpty()) {
+        if (txtPassword.getPassword().length == 0) {
             return;
         }
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             txtRepeatPassword.requestFocus();
-    }      
+        }
     }//GEN-LAST:event_txtPasswordKeyPressed
 
     private void txtRepeatPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRepeatPasswordKeyPressed
-        if (txtRepeatPassword.toString().trim().isEmpty()) {
+        if (txtRepeatPassword.getPassword().length == 0) {
             return;
         }
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             register();
-    }      
+        }
     }//GEN-LAST:event_txtRepeatPasswordKeyPressed
+
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        register();
+    }//GEN-LAST:event_btnRegisterActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -231,6 +247,67 @@ public class Registration extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void register() {
-       
+        if (txtName.getText().trim().isEmpty()) {
+            txtName.requestFocus();
+            return;
+        }
+        if (txtSurname.getText().trim().isEmpty()) {
+            txtSurname.requestFocus();
+            return;
+        }
+        if (txtEmail.getText().trim().length() == 0) {
+            txtEmail.requestFocus();
+            return;
+        }
+        if (txtPassword.getPassword().length == 0) {
+            txtPassword.requestFocus();
+            return;
+        }
+        if (txtRepeatPassword.getPassword().length == 0) {
+            txtRepeatPassword.requestFocus();
+            return;
+        }
+
+        try {
+            userController.setEntity(new User());
+            char p[] = txtPassword.getPassword();
+            char rp[] = txtRepeatPassword.getPassword();
+
+            if(p == null){
+                throw new CopilotException("Invalid password.");
+            }
+            if(p.length<3){
+                throw new CopilotException("Password is too weak.");
+            }
+            if(p.length>60){
+                throw new CopilotException("Password is too big.");
+            }
+            
+            if (Arrays.equals(p, rp)) {
+                dataVerification();
+                userController.create();
+                dispose();
+                new Authorization().setVisible(true);
+                JOptionPane.showMessageDialog(getRootPane(), "You successfully created an account.");
+            }else {
+                throw new CopilotException("Passwords do not match.");
+            }
+
+        } catch (CopilotException e) {
+            JOptionPane.showMessageDialog(getRootPane(), e.getMessage());
+        }
+
+    }
+    
+
+    private void dataVerification() {
+        var p = userController.getEntity();
+        p.setName(txtName.getText());
+        p.setSurname(txtSurname.getText());
+        p.setEmail(txtEmail.getText());
+        //p.setPassword(BCrypt.hashpw(String.valueOf(txtPassword.getPassword()), BCrypt.gensalt()));
+        p.setPassword(BCrypt.hashpw(String.valueOf(txtPassword.getPassword()), BCrypt.gensalt()));
+        p.setRole("oper");
+
     }
 }
