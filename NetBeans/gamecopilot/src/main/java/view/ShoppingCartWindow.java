@@ -4,6 +4,8 @@
  */
 package view;
 
+import util.Util;
+
 /**
  *
  * @author frank
@@ -15,6 +17,7 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
      */
     public ShoppingCartWindow() {
         initComponents();
+        setTitle(Util.getTitle("Shopping Cart"));
     }
 
     /**

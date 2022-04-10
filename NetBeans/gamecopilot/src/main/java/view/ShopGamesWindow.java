@@ -5,6 +5,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import model.Product;
+import util.Util;
 
 public class ShopGamesWindow extends javax.swing.JFrame {
 
@@ -14,24 +15,9 @@ public class ShopGamesWindow extends javax.swing.JFrame {
     public ShopGamesWindow() {
         initComponents();
         pc = new ProductController();
-        
+        setTitle(Util.getTitle("Shop"));
         ProductTableModel m = new ProductTableModel(pc.read());
         jTable1.setModel(m);
-
-    }
-
-    private void load() {
-        table = (DefaultTableModel) jTable1.getModel();
-        List<Product> entities = pc.read();
-
-        for (Product p : entities) {
-            Object[] o = new Object[4];
-            o[0] = p.getName();
-            o[1] = p.getDescription();
-            o[2] = p.getPrice();
-            o[3] = p.getQuantity();
-            table.addRow(o);
-        }
 
     }
 
@@ -130,30 +116,16 @@ public class ShopGamesWindow extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    GameDataWindow gdw = new GameDataWindow();
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         if (evt.getClickCount() == 2) {
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            int selectedRowIndex = jTable1.getSelectedRow();
+            ProductTableModel ptm = (ProductTableModel) jTable1.getModel();
+            Product p = ptm.getProductAt(jTable1.getSelectedRow());
 
-            txtTitle.setText(model.getValueAt(selectedRowIndex, 0).toString());
-            txtDesc.setText(model.getValueAt(selectedRowIndex, 1).toString());
-            txtPrice.setText(model.getValueAt(selectedRowIndex, 2).toString());
+            if (p.getOrders() != null && p.getOrders().size() > 0) {
+                new GameDataWindow(p).setVisible(true);
+            }
 
-            gdw.setVisible(true);
-            int selectedRow = jTable1.getSelectedRow();
-            TableModel tm = jTable1.getModel();
-
-            String title = tm.getValueAt(selectedRow, 0).toString();
-            String description = tm.getValueAt(selectedRow, 1).toString();
-            String price = tm.getValueAt(selectedRow, 2).toString();
-            String quantity = tm.getValueAt(selectedRow, 3).toString();
-
-            gdw.txtTitle.setText(title);
-            gdw.txtPrice.setText("$"+price);
-            gdw.txtDescription.setText(description);
-          
         }
 
 

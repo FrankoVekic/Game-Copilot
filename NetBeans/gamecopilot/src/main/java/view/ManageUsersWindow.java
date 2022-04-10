@@ -11,6 +11,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import model.User;
 import util.CopilotException;
+import util.Util;
 
 /**
  *
@@ -25,6 +26,7 @@ public class ManageUsersWindow extends javax.swing.JFrame {
         controller = new UserController();
         load();
         loadRoles();
+        setTitle(Util.getTitle("Manage Users"));
     }
     
     public void loadRoles(){

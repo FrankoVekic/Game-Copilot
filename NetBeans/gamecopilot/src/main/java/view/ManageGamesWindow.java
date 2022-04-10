@@ -12,6 +12,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import model.Product;
 import util.CopilotException;
+import util.Util;
 
 /**
  *
@@ -27,6 +28,7 @@ public class ManageGamesWindow extends javax.swing.JFrame {
         controller = new ProductController();
         nf = new DecimalFormat("###,###.00");
         load();
+        setTitle(Util.getTitle("Manage Games"));
     }
 
     public void load() {

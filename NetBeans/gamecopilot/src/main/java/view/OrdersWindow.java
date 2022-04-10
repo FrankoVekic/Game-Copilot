@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.OrderList;
 import model.Product;
+import util.Util;
 
 
 public class OrdersWindow extends javax.swing.JFrame {
@@ -20,6 +21,7 @@ public class OrdersWindow extends javax.swing.JFrame {
         initComponents();
         controller = new OrderController();
         load();
+        setTitle(Util.getTitle("Orders"));
     }
     
     

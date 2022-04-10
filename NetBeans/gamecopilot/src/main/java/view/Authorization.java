@@ -194,13 +194,14 @@ public class Authorization extends javax.swing.JFrame {
             emailAddr.validate();
         } catch (AddressException e) {
             txtEmail.requestFocus();
+            JOptionPane.showMessageDialog(getRootPane(), "Invalid email given.");
             return;
         }
         
           User user = userController.authorize(txtEmail.getText(), new String(txtPassword.getPassword()));
 
         if (user == null) {
-            JOptionPane.showMessageDialog(getRootPane(), "Invalid data given.");
+            JOptionPane.showMessageDialog(getRootPane(), "Something went wrong, please try again.");
             return;
         }
 

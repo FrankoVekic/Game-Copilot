@@ -1,10 +1,19 @@
 package view;
 
+import model.Product;
+import util.Util;
+
 public class GameDataWindow extends javax.swing.JFrame {
 
-    public GameDataWindow() {
+    private Product product;
+
+    public GameDataWindow(Product product) {
         initComponents();
         defaultQuantity();
+        this.product = product;
+        loadGame();
+        setTitle(Util.getTitle(product.getName()));
+        //System.out.println(product.getName());
     }
 
     @SuppressWarnings("unchecked")
@@ -143,10 +152,16 @@ public class GameDataWindow extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void defaultQuantity(){
-        txtQuantity.setText("1");
+    private void loadGame(){
+        txtTitle.setText(product.getName());
+        txtPrice.setText(product.getPrice().toString());
+        txtDescription.setText(product.getDescription());
     }
     
+    private void defaultQuantity() {
+        txtQuantity.setText("1");
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddToCart;

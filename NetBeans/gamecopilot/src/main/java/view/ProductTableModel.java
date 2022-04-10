@@ -57,4 +57,8 @@ public class ProductTableModel extends AbstractTableModel {
     public String getColumnName(int col) {
         return colNames[col];
     }
+    
+    public Product getProductAt(int row){
+        return products.get(row);
+    }
 }
