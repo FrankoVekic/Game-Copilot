@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Product extends model.Entity {
@@ -18,8 +19,8 @@ public class Product extends model.Entity {
     @Column(nullable = false)
     private Integer quantity;
     
-    @ManyToMany(mappedBy = "products")
-    private List<OrderList>orders;
+    @OneToMany(mappedBy = "product")
+    private List<ProductOrder> orders;
     
     public String getName() {
         return name;
@@ -58,11 +59,11 @@ public class Product extends model.Entity {
         return name;
     }
 
-    public List<OrderList> getOrders() {
+    public List<ProductOrder> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<OrderList> orders) {
+    public void setOrders(List<ProductOrder> orders) {
         this.orders = orders;
     }
     

@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 import model.OrderList;
 import model.Product;
+import model.ProductOrder;
 import model.User;
 import org.hibernate.Session;
 import org.mindrot.jbcrypt.BCrypt;
@@ -25,6 +26,7 @@ public class Insert {
 
         OrderList o;
         User u;
+        ProductOrder po;
 
         try {
             for (int i = 0; i < (users.size() - 50); i++) {
@@ -37,8 +39,17 @@ public class Insert {
                 o.setCountry(faker.address().city());
                 Collections.shuffle(users);
                 o.setProducts(new ArrayList<>());
-                o.getProducts().add(products.get(i));
+//              o.getProducts().add(products.get(i));
+                po = new ProductOrder();
+                po.setOrders(o);
+                po.setProduct(products.get(i));
+                po.setQuantity(2);
+                o.getProducts().add(po);
                 session.save(o);
+                
+                for(ProductOrder pg1 : o.getProducts()){
+                    session.save(pg1);
+                }
             }
         } catch (Exception e) {
         }

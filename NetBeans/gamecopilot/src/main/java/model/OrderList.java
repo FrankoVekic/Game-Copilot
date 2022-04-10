@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity(name = "orders")
 public class OrderList extends model.Entity {
@@ -20,15 +21,15 @@ public class OrderList extends model.Entity {
     private Date orderDate;
     @ManyToOne
     private User user;
-    @ManyToMany
-    private List<Product> products;
+    @OneToMany(mappedBy = "orders")
+    private List<ProductOrder> products;
    
 
-    public List<Product> getProducts() {
+    public List<ProductOrder> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(List<ProductOrder> products) {
         this.products = products;
     }
 
