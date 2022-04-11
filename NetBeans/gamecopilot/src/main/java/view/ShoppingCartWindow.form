@@ -35,11 +35,13 @@
               <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="btnCheckout" min="-2" pref="150" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="btnRemoveItem" min="-2" pref="150" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="btnBackToStore" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="btnCheckout" min="-2" pref="106" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="btnChange" min="-2" pref="113" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnRemove" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="btnBackToStore" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" min="-2" pref="506" max="-2" attributes="0"/>
               </Group>
@@ -56,9 +58,10 @@
               <Component id="jScrollPane1" min="-2" pref="302" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnRemoveItem" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnRemove" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnBackToStore" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnCheckout" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnChange" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
@@ -129,7 +132,7 @@
         <Property name="text" type="java.lang.String" value="My Shopping Cart"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnRemoveItem">
+    <Component class="javax.swing.JButton" name="btnRemove">
       <Properties>
         <Property name="text" type="java.lang.String" value="Remove Item "/>
       </Properties>
@@ -145,6 +148,11 @@
     <Component class="javax.swing.JButton" name="btnCheckout">
       <Properties>
         <Property name="text" type="java.lang.String" value="Checkout"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnChange">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Change"/>
       </Properties>
     </Component>
   </SubComponents>

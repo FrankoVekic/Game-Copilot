@@ -22,9 +22,10 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        btnRemoveItem = new javax.swing.JButton();
+        btnRemove = new javax.swing.JButton();
         btnBackToStore = new javax.swing.JButton();
         btnCheckout = new javax.swing.JButton();
+        btnChange = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -51,7 +52,7 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("My Shopping Cart");
 
-        btnRemoveItem.setText("Remove Item ");
+        btnRemove.setText("Remove Item ");
 
         btnBackToStore.setText("Go Back To Store");
         btnBackToStore.addActionListener(new java.awt.event.ActionListener() {
@@ -61,6 +62,8 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
         });
 
         btnCheckout.setText("Checkout");
+
+        btnChange.setText("Change");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,11 +77,13 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
                 .addGap(80, 80, 80)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCheckout, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(btnRemoveItem, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(btnBackToStore, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnCheckout, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(btnChange, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRemove)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnBackToStore))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(79, Short.MAX_VALUE))
         );
@@ -91,9 +96,10 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRemoveItem)
+                    .addComponent(btnRemove)
                     .addComponent(btnBackToStore)
-                    .addComponent(btnCheckout))
+                    .addComponent(btnCheckout)
+                    .addComponent(btnChange))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -109,8 +115,9 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBackToStore;
+    private javax.swing.JButton btnChange;
     private javax.swing.JButton btnCheckout;
-    private javax.swing.JButton btnRemoveItem;
+    private javax.swing.JButton btnRemove;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
