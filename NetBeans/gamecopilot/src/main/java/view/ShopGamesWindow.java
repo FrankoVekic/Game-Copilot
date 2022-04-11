@@ -9,7 +9,6 @@ import util.Util;
 
 public class ShopGamesWindow extends javax.swing.JFrame {
 
-    DefaultTableModel table;
     ProductController pc;
 
     public ShopGamesWindow() {
@@ -125,10 +124,7 @@ public class ShopGamesWindow extends javax.swing.JFrame {
             if (p.getOrders() != null && p.getOrders().size() > 0) {
                 new GameDataWindow(p).setVisible(true);
             }
-
         }
-
-
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void btnCartViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCartViewActionPerformed

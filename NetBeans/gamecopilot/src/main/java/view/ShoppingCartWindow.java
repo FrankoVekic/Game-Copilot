@@ -1,23 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
 
 import util.Util;
 
-/**
- *
- * @author frank
- */
 public class ShoppingCartWindow extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ShoppingCartWindow
-     */
     public ShoppingCartWindow() {
         initComponents();
         setTitle(Util.getTitle("Shopping Cart"));
+
     }
 
     /**
@@ -116,7 +106,6 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnBackToStoreActionPerformed
 
- 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBackToStore;

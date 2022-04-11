@@ -8,9 +8,9 @@ public class ProductOrder extends model.Entity {
 
     @ManyToOne
     private OrderList orders;
-    @ManyToOne 
+    @ManyToOne
     private Product product;
-    
+    private Integer cart;
     private Integer quantity;
 
     public OrderList getOrders() {
@@ -36,7 +36,5 @@ public class ProductOrder extends model.Entity {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
-    
-    
-    
+
 }

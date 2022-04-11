@@ -77,6 +77,11 @@ public class GameDataWindow extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtDescription);
 
         btnAddToCart.setText("Add To Cart");
+        btnAddToCart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddToCartActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -151,6 +156,10 @@ public class GameDataWindow extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToCartActionPerformed
+        
+    }//GEN-LAST:event_btnAddToCartActionPerformed
 
     private void loadGame(){
         txtTitle.setText(product.getName());
