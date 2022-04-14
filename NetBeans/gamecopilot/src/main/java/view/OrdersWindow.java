@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.OrderList;
 import model.Product;
+import model.ProductOrder;
 import util.Util;
 
 
@@ -28,8 +29,9 @@ public class OrdersWindow extends javax.swing.JFrame {
      private void load() {
         table = (DefaultTableModel) jTable1.getModel();
         List<OrderList> entities = controller.read();
-
+        String s;
         for (OrderList p : entities) {
+            s="";
             Object[] o = new Object[7];
             o[0] = p.getId();
             o[1] = p.getOrderDate();
@@ -37,7 +39,10 @@ public class OrdersWindow extends javax.swing.JFrame {
             o[3] = p.getAddress();
             o[4] = p.getCity();
             o[5] = p.getCountry();
-            o[6] = p.getProducts();
+            for(ProductOrder pr : p.getProducts()){
+                s+=pr.getProduct().getName();
+            }
+            o[6] = (s);
             table.addRow(o);
         }
 
