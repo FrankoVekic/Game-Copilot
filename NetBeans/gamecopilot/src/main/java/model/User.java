@@ -75,6 +75,5 @@ public class User extends model.Entity {
     public void setOrders(List<OrderList> orders) {
         this.orders = orders;
     }
-
     
 }

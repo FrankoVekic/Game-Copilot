@@ -14,7 +14,7 @@ public class OrderController extends Controller<OrderList> {
 
     @Override
     protected void controlCreate() throws CopilotException {
-        
+
     }
 
     @Override
