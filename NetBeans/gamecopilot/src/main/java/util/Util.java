@@ -1,13 +1,16 @@
 package util;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
+import model.ProductOrder;
 import model.User;
 
 public class Util {
     
     public static User user;
     public static final String APP_TITLE = "Game-Copilot";
-    
+    public static List<ProductOrder> cart = new ArrayList<>();
     
     public static String getTitle(String title) {
         if (Util.user == null) {
