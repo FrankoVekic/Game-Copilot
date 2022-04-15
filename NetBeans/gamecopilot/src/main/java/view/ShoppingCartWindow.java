@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.OrderList;
+import model.Product;
 import model.ProductOrder;
 import model.User;
 import util.CopilotException;
@@ -28,7 +29,7 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
     public ShoppingCartWindow() {
         initComponents();
         setTitle(Util.getTitle("Shopping Cart"));
-        ProductOrderTable m = new ProductOrderTable(Util.cart);
+        ShopingCartTable m = new ShopingCartTable(Util.cart);
         jTable1.setModel(m);
 
         for (ProductOrder po : Util.cart) {
@@ -123,11 +124,15 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel2.setText("Title");
 
+        txtTitle.setEditable(false);
+
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel3.setText("Quantity");
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel4.setText("Price");
+
+        txtPrice.setEditable(false);
 
         jLabel5.setText("Total Price");
 
@@ -196,7 +201,7 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
                                     .addComponent(btnChange)
                                     .addComponent(btnRemove))
                                 .addGap(20, 20, 20)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnCheckout, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnBackToStore, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(28, Short.MAX_VALUE))))
@@ -216,27 +221,33 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
-        if (jTable1.getSelectedRow() == 1) {
-            String name = txtTitle.getText();
-            ProductOrder po = (ProductOrder) jTable1.getModel();
-            System.out.println(po.getProduct() + " : " + po.getQuantity());
-        } else {
-            JOptionPane.showMessageDialog(getRootPane(), "You have to SELECT a product first.");
-            return;
+        try {
+            ShopingCartTable ptm = (ShopingCartTable) jTable1.getModel();
+            ProductOrder p = ptm.getProductAt(jTable1.getSelectedRow());
+            for (ProductOrder po : Util.cart) {
+                if (po.getId() == p.getId()) {
+                    p.setQuantity(Integer.parseInt(txtQuantity.getText()));
+                    break;
+                }
+            }
+            ShopingCartTable m = new ShopingCartTable(Util.cart);
+            jTable1.setModel(m);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(getRootPane(), "Select a game first.");
         }
+
     }//GEN-LAST:event_btnChangeActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        ProductOrderTable model = (ProductOrderTable) jTable1.getModel();
+        ShopingCartTable model = (ShopingCartTable) jTable1.getModel();
         int selectedRowIndex = jTable1.getSelectedRow();
 
         txtTitle.setText(model.getValueAt(selectedRowIndex, 0).toString());
-        txtPrice.setText(model.getValueAt(selectedRowIndex, 1).toString());
+        txtPrice.setText("$" + model.getValueAt(selectedRowIndex, 1).toString());
         txtQuantity.setText(model.getValueAt(selectedRowIndex, 2).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
-    
-    
+
     private void btnCheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckoutActionPerformed
         orderController = new OrderController();
         try {
@@ -259,8 +270,8 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
         p.setAddress(faker.address().fullAddress());
         p.setCity(faker.address().city());
         p.setCountry(faker.address().city());
-
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBackToStore;
@@ -281,6 +292,6 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void totalPrice() {
-      txtTotalPrice.setText("0");
+        txtTotalPrice.setText("0");
     }
 }
