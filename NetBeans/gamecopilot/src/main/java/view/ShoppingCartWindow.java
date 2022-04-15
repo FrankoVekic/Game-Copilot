@@ -217,7 +217,25 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackToStoreActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-        // TODO add your handling code here:
+        try {
+            ShopingCartTable ptm = (ShopingCartTable) jTable1.getModel();
+            ProductOrder p = ptm.getProductAt(jTable1.getSelectedRow());
+            for (ProductOrder po : Util.cart) {
+                if (po.getId() == p.getId()) {
+                    if (JOptionPane.showConfirmDialog(getRootPane(),
+                            "Are you sure you want to delete \"" + p.getProduct().getName() + "\"?", "Delete",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE) == JOptionPane.NO_OPTION) {
+                        return;
+                    }
+                    Util.cart.remove(p);
+                }
+            }
+            ShopingCartTable m = new ShopingCartTable(Util.cart);
+            jTable1.setModel(m);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(getRootPane(), "Select which game you want to DELETE.");
+        }
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
