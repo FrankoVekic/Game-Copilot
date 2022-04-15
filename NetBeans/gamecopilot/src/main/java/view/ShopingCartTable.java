@@ -12,11 +12,11 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author frank
  */
-public class ProductOrderTable extends AbstractTableModel {
+public class ShopingCartTable extends AbstractTableModel {
 
     private List<ProductOrder> products;
 
-    public ProductOrderTable(List<ProductOrder> products) {
+    public ShopingCartTable(List<ProductOrder> products) {
         this.products = products;
     }
 
