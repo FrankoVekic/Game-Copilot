@@ -1,5 +1,7 @@
 package view;
 
+import java.math.BigDecimal;
+import javax.swing.JOptionPane;
 import model.Product;
 import model.ProductOrder;
 import util.Util;
@@ -151,18 +153,35 @@ public class GameDataWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToCartActionPerformed
-        ProductOrder po = new ProductOrder();
-        po.setProduct(this.product);
-        po.setQuantity(Integer.parseInt(txtQuantity.getText()));
-        Util.cart.add(po);
+        try {
+            if (txtQuantity.getText().trim().isEmpty() || txtQuantity.getText().equals("")) {
+                JOptionPane.showMessageDialog(getRootPane(), "Invalid quantity");
+                return;
+            }
+            BigDecimal quan = new BigDecimal(Integer.parseInt(txtQuantity.getText()));
+            if (quan.compareTo(BigDecimal.ZERO) <= 0) {
+                JOptionPane.showMessageDialog(getRootPane(), "Quantity required.");
+                return;
+            } else {
+                ProductOrder po = new ProductOrder();
+                po.setProduct(this.product);
+                po.setQuantity(Integer.parseInt(txtQuantity.getText()));
+                Util.cart.add(po);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(getRootPane(), "Something went wrong. Please try again.");
+            return;
+        }
+
+
     }//GEN-LAST:event_btnAddToCartActionPerformed
 
-    private void loadGame(){
+    private void loadGame() {
         txtTitle.setText(product.getName());
         txtPrice.setText(product.getPrice().toString());
         txtDescription.setText(product.getDescription());
     }
-    
+
     private void defaultQuantity() {
         txtQuantity.setText("1");
     }
