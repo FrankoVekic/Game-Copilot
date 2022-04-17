@@ -43,6 +43,11 @@ public class ProductOrderController extends Controller<ProductOrder> {
         }
     }
 
+    @Override
+    protected void saveAfter() throws CopilotException {
+       
+    }
+
     
     
     

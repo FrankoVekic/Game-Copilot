@@ -167,4 +167,9 @@ public class UserController extends Controller<User> {
         
         
     }
+
+    @Override
+    protected void saveAfter() throws CopilotException {
+       
+    }
 }

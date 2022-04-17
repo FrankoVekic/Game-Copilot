@@ -32,9 +32,6 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
         ShopingCartTable m = new ShopingCartTable(Util.cart);
         jTable1.setModel(m);
 
-        for (ProductOrder po : Util.cart) {
-            System.out.println(po.getProduct().getName() + ": " + po.getQuantity() + " - $" + po.getProduct().getPrice());
-        }
         totalPrice();
     }
 
@@ -220,21 +217,19 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
         try {
             ShopingCartTable ptm = (ShopingCartTable) jTable1.getModel();
             ProductOrder p = ptm.getProductAt(jTable1.getSelectedRow());
-            for (ProductOrder po : Util.cart) {
-                if (po.getId() == p.getId()) {
                     if (JOptionPane.showConfirmDialog(getRootPane(),
-                            "Are you sure you want to delete \"" + p.getProduct().getName() + "\"?", "Delete",
+                            "Are you sure you want to remove \"" + p.getProduct().getName() + "\"?", "Delete",
                             JOptionPane.YES_NO_OPTION,
                             JOptionPane.QUESTION_MESSAGE) == JOptionPane.NO_OPTION) {
                         return;
                     }
                     Util.cart.remove(p);
-                }
-            }
+                
+            
             ShopingCartTable m = new ShopingCartTable(Util.cart);
             jTable1.setModel(m);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(getRootPane(), "Select which game you want to DELETE.");
+            JOptionPane.showMessageDialog(getRootPane(), "Something went wrong, please try again.");
         }
     }//GEN-LAST:event_btnRemoveActionPerformed
 
@@ -268,10 +263,21 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
 
     private void btnCheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckoutActionPerformed
         orderController = new OrderController();
+        productOrderController = new ProductOrderController();
         try {
             orderController.setEntity(new OrderList());
+            orderController.getEntity().setProducts(new ArrayList<>());
+            if (orderController.getEntity().getProducts() == null) {
+                orderController.getEntity().setProducts(new ArrayList<>());
+            }
             dataVerificationOrders();
             orderController.create();
+            for (ProductOrder p : Util.cart) {
+                productOrderController.setEntity(new ProductOrder());
+                dataVerificationProductOrder(p.getProduct());
+                productOrderController.create();
+            }
+
         } catch (CopilotException ex) {
             JOptionPane.showMessageDialog(getRootPane(), ex.getMessage());
         }
@@ -288,6 +294,15 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
         p.setAddress(faker.address().fullAddress());
         p.setCity(faker.address().city());
         p.setCountry(faker.address().city());
+
+    }
+
+    private void dataVerificationProductOrder(Product po) {
+        var p = productOrderController.getEntity();
+        p.setOrders(orderController.getEntity());
+        p.setProduct(po);
+        p.setQuantity(po.getQuantity());
+
     }
 
 

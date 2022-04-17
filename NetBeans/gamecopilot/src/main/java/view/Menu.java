@@ -4,6 +4,19 @@
  */
 package view;
 
+import controller.OrderController;
+import controller.ProductController;
+import controller.ProductOrderController;
+import java.awt.BorderLayout;
+import java.util.Collections;
+import java.util.List;
+import model.OrderList;
+import model.Product;
+import model.ProductOrder;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
 import util.Util;
 
 /**
@@ -18,6 +31,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         settings();
+        graph();
     }
     
     public void settings(){
@@ -40,6 +54,7 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlGraph = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         logOut = new javax.swing.JMenuItem();
@@ -53,6 +68,17 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout pnlGraphLayout = new javax.swing.GroupLayout(pnlGraph);
+        pnlGraph.setLayout(pnlGraphLayout);
+        pnlGraphLayout.setHorizontalGroup(
+            pnlGraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 511, Short.MAX_VALUE)
+        );
+        pnlGraphLayout.setVerticalGroup(
+            pnlGraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 341, Short.MAX_VALUE)
+        );
 
         jMenu1.setText("Game-Copilot");
 
@@ -128,11 +154,17 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 590, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(pnlGraph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 384, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlGraph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -168,6 +200,30 @@ public class Menu extends javax.swing.JFrame {
         new OrdersWindow().setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void graph(){
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        List<OrderList> orders = new OrderController().read();
+        List<Product> products = new ProductController().read();
+        
+        Collections.sort(orders, new OrderComparator());
+
+        
+        for(OrderList o : orders){
+            var num = o.getProducts() == null ? 0 : o.getProducts().size();
+            dataset.setValue(o.getUser()+ " (" + num + ") ", num);
+        }
+            
+        
+        
+        
+        JFreeChart jFreeChart = ChartFactory.createPieChart("Top selling games.", dataset);
+        
+        ChartPanel chartPanel = new ChartPanel(jFreeChart);
+        
+        pnlGraph.setLayout(new BorderLayout());
+        pnlGraph.add(chartPanel,BorderLayout.CENTER);
+        pnlGraph.validate();
+    }
    
   
 
@@ -183,5 +239,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem logOut;
     private javax.swing.JMenu menuAdmin;
     private javax.swing.JMenu menuShop;
+    private javax.swing.JPanel pnlGraph;
     // End of variables declaration//GEN-END:variables
 }

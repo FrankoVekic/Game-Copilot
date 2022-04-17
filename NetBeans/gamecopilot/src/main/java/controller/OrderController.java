@@ -2,6 +2,7 @@ package controller;
 
 import java.util.List;
 import model.OrderList;
+import model.ProductOrder;
 import util.CopilotException;
 
 
@@ -45,6 +46,15 @@ public class OrderController extends Controller<OrderList> {
       if(entity.getCountry().trim().isEmpty() || entity.getCountry()==null){
             throw new CopilotException("Country is required.");
         }
+    }
+
+    @Override
+    protected void saveAfter() throws CopilotException {
+         session.beginTransaction();
+         for(ProductOrder po : entity.getProducts()){
+             session.save(po);
+         }
+         session.getTransaction().commit();
     }
     
 }

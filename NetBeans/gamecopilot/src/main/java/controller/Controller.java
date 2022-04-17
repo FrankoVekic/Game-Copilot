@@ -17,6 +17,8 @@ public abstract class Controller<T> {
     protected abstract void controlUpdate() throws CopilotException;
 
     protected abstract void controlDelete() throws CopilotException;
+    
+    protected abstract void saveAfter() throws CopilotException;
 
     public Controller() {
 
@@ -27,12 +29,14 @@ public abstract class Controller<T> {
     public T create() throws CopilotException {
         controlCreate();
         save();
+        saveAfter();
         return entity;
     }
 
     public T update() throws CopilotException {
         controlUpdate();
         save();
+        saveAfter();
         return entity;
     }
 

@@ -8,7 +8,6 @@ model\Product.class
 view\Menu$7.class
 controller\OrderController.class
 view\ManageGamesWindow.class
-util\GCException.class
 view\Authorization$3.class
 model\User.class
 view\ManageUsersWindow.class

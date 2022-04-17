@@ -114,4 +114,9 @@ public class ProductController extends Controller<Product> {
         }
     }
 
+    @Override
+    protected void saveAfter() throws CopilotException {
+      
+    }
+
 }
