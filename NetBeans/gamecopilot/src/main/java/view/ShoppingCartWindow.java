@@ -217,15 +217,13 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
         try {
             ShopingCartTable ptm = (ShopingCartTable) jTable1.getModel();
             ProductOrder p = ptm.getProductAt(jTable1.getSelectedRow());
-                    if (JOptionPane.showConfirmDialog(getRootPane(),
-                            "Are you sure you want to remove \"" + p.getProduct().getName() + "\"?", "Delete",
-                            JOptionPane.YES_NO_OPTION,
-                            JOptionPane.QUESTION_MESSAGE) == JOptionPane.NO_OPTION) {
-                        return;
-                    }
-                    Util.cart.remove(p);
-                
-            
+            if (JOptionPane.showConfirmDialog(getRootPane(),
+                    "Are you sure you want to remove \"" + p.getProduct().getName() + "\"?", "Delete",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE) == JOptionPane.NO_OPTION) {
+                return;
+            }
+            Util.cart.remove(p);
             ShopingCartTable m = new ShopingCartTable(Util.cart);
             jTable1.setModel(m);
         } catch (Exception e) {
@@ -238,7 +236,11 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
             ShopingCartTable ptm = (ShopingCartTable) jTable1.getModel();
             ProductOrder p = ptm.getProductAt(jTable1.getSelectedRow());
             for (ProductOrder po : Util.cart) {
-                if (po.getId() == p.getId()) {
+                if (po.getProduct().getId() == p.getProduct().getId()) {
+                    if(Integer.parseInt(txtQuantity.getText()) > po.getProduct().getQuantity()){
+                        JOptionPane.showMessageDialog(getRootPane(), "Not enough games in stock.");
+                        return;
+                    }
                     p.setQuantity(Integer.parseInt(txtQuantity.getText()));
                     break;
                 }

@@ -154,7 +154,13 @@ public class GameDataWindow extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(getRootPane(), "Invalid quantity");
                 return;
             }
-            if(Integer.parseInt(txtQuantity.getText()) > this.product.getQuantity()){
+            for(ProductOrder po : Util.cart){
+                if(po.getProduct().getId() == this.product.getId()){
+                    JOptionPane.showMessageDialog(getRootPane(), "This game is already added to the cart.");
+                    return;
+                }
+            }
+            if (Integer.parseInt(txtQuantity.getText()) > this.product.getQuantity()) {
                 JOptionPane.showMessageDialog(getRootPane(), "Not enough games in stock.");
                 return;
             }
@@ -162,11 +168,12 @@ public class GameDataWindow extends javax.swing.JFrame {
             if (quan.compareTo(BigDecimal.ZERO) <= 0) {
                 JOptionPane.showMessageDialog(getRootPane(), "Quantity needs to be a positive number.");
                 return;
-            } else {
-                ProductOrder po = new ProductOrder();
-                po.setProduct(this.product);
-                po.setQuantity(Integer.parseInt(txtQuantity.getText()));
-                Util.cart.add(po);
+            } else {               
+                    ProductOrder po = new ProductOrder();
+                    po.setProduct(this.product);
+                    po.setQuantity(Integer.parseInt(txtQuantity.getText()));
+                    Util.cart.add(po);
+                
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(getRootPane(), "Something went wrong. Please try again.");
