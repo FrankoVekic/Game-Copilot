@@ -7,6 +7,7 @@ package controller;
 import java.util.List;
 import model.ProductOrder;
 import util.CopilotException;
+import util.Util;
 
 /**
  *
@@ -45,7 +46,12 @@ public class ProductOrderController extends Controller<ProductOrder> {
 
     @Override
     protected void saveAfter() throws CopilotException {
-       
+        session.beginTransaction();
+       for(ProductOrder p : Util.cart){
+          p.getProduct().setQuantity(p.getProduct().getQuantity()-p.getQuantity());
+           session.save(p);
+       }
+       session.getTransaction().commit();
     }
 
     
