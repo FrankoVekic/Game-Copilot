@@ -173,6 +173,7 @@ public class GameDataWindow extends javax.swing.JFrame {
                     po.setProduct(this.product);
                     po.setQuantity(Integer.parseInt(txtQuantity.getText()));
                     Util.cart.add(po);
+                    JOptionPane.showMessageDialog(getRootPane(), po.getProduct().getName() + " is added to the cart.");
                 
             }
         } catch (Exception e) {
