@@ -5,19 +5,19 @@
 package view;
 
 import java.util.Comparator;
-import model.OrderList;
+import model.Product;
 import model.Product;
 
 /**
  *
  * @author frank
  */
-public class OrderComparator implements Comparator<OrderList> {
+public class ProductComparator implements Comparator<Product> {
 
     @Override
-    public int compare(OrderList o1, OrderList o2) {
-        Integer first = o1.getProducts() == null ? 0 : o1.getProducts().size();
-        Integer secound = o2.getProducts() == null ? 0 : o2.getProducts().size();
+    public int compare(Product o1, Product o2) {
+        Integer first = o1.getOrders()== null ? 0 : o1.getOrders().size();
+        Integer secound = o2.getOrders() == null ? 0 : o2.getOrders().size();
         return secound.compareTo(first);
 
     }
