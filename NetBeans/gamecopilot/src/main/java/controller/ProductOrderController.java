@@ -22,7 +22,7 @@ public class ProductOrderController extends Controller<ProductOrder> {
 
     @Override
     protected void controlCreate() throws CopilotException {
-        checkQuantity();
+        // checkQuantity();
     }
 
     @Override
@@ -32,30 +32,25 @@ public class ProductOrderController extends Controller<ProductOrder> {
 
     @Override
     protected void controlDelete() throws CopilotException {
-        
+
     }
 
     private void checkQuantity() throws CopilotException {
-        if(entity.getQuantity() == null || entity.getQuantity()<=0){
+        if (entity.getQuantity() == null || entity.getQuantity() <= 0) {
             throw new CopilotException("Quantity must be a positive number.");
         }
-        if(entity.getQuantity() > entity.getProduct().getQuantity()){
+        if (entity.getQuantity() > entity.getProduct().getQuantity()) {
             throw new CopilotException("There are: " + entity.getProduct().getQuantity() + " games in stock.");
         }
     }
 
     @Override
     protected void saveAfter() throws CopilotException {
-        session.beginTransaction();
-       for(ProductOrder p : Util.cart){
-          p.getProduct().setQuantity(p.getProduct().getQuantity()-p.getQuantity());
-           session.save(p);
-       }
-       session.getTransaction().commit();
+        session.beginTransaction();       
+            entity.getProduct().setQuantity(entity.getProduct().getQuantity() - entity.getQuantity());
+            session.save(entity);
+        
+        session.getTransaction().commit();
     }
 
-    
-    
-    
-    
 }

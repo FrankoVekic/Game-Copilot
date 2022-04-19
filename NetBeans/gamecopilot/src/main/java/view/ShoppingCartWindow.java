@@ -273,6 +273,10 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
 
 
     private void btnCheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckoutActionPerformed
+        if(Util.cart.isEmpty()){
+            JOptionPane.showMessageDialog(getRootPane(), "Shopping Cart is empty. ");
+            return;
+        }
         orderController = new OrderController();
         productOrderController = new ProductOrderController();
         try {
@@ -282,16 +286,26 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
                 orderController.getEntity().setProducts(new ArrayList<>());
             }
             dataVerificationOrders();
-            orderController.create();
-            for (ProductOrder p : Util.cart) {
+            OrderList o = orderController.create();
+            for(ProductOrder p : Util.cart){
+                productOrderController.setEntity(new ProductOrder());
+                var s = productOrderController.getEntity();
+                s.setProduct(p.getProduct());
+                s.setQuantity(p.getQuantity());
+                s.setOrders(o);
+                productOrderController.create();
+            }
+            Util.cart = new ArrayList<>();
+            totalPrice();
+            ShopingCartTable m = new ShopingCartTable(Util.cart);
+            jTable1.setModel(m);
+            JOptionPane.showMessageDialog(getRootPane(), "Your order has been received. ");
+          /*  for (ProductOrder p : Util.cart) {
                 productOrderController.setEntity(new ProductOrder());
                 dataVerificationProductOrder(p.getProduct());
                 productOrderController.create();
             }
-            Util.cart = new ArrayList<>();
-            ShopingCartTable m = new ShopingCartTable(Util.cart);
-            jTable1.setModel(m);
-            JOptionPane.showMessageDialog(getRootPane(), "Your order has been received. ");
+             */
             
         } catch (CopilotException ex) {
             JOptionPane.showMessageDialog(getRootPane(), ex.getMessage());

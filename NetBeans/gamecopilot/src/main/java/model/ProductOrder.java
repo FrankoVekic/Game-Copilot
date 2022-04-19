@@ -10,7 +10,6 @@ public class ProductOrder extends model.Entity {
     private OrderList orders;
     @ManyToOne
     private Product product;
-    private Integer cart;
     private Integer quantity;
 
     public OrderList getOrders() {

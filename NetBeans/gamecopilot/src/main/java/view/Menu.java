@@ -41,7 +41,6 @@ public class Menu extends javax.swing.JFrame {
         pnlGraph = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        logOut = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         menuShop = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -65,14 +64,6 @@ public class Menu extends javax.swing.JFrame {
         );
 
         jMenu1.setText("Game-Copilot");
-
-        logOut.setText("Log-out");
-        logOut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logOutActionPerformed(evt);
-            }
-        });
-        jMenu1.add(logOut);
 
         jMenuItem1.setText("Exit");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -163,11 +154,6 @@ public class Menu extends javax.swing.JFrame {
         new ShopGamesWindow().setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void logOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutActionPerformed
-        dispose();
-        new Authorization().setVisible(true);
-    }//GEN-LAST:event_logOutActionPerformed
-
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         new ManageGamesWindow().setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
@@ -214,7 +200,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem logOut;
     private javax.swing.JMenu menuAdmin;
     private javax.swing.JMenu menuShop;
     private javax.swing.JPanel pnlGraph;

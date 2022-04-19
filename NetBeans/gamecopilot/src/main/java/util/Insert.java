@@ -80,6 +80,15 @@ public class Insert {
         u.setRole("admin");
         session.save(u);
         users.add(u);
+        
+        u = new User();
+        u.setName("test");
+        u.setSurname("test");
+        u.setEmail("test@gmail.com");
+        u.setPassword(BCrypt.hashpw("a", BCrypt.gensalt()));
+        u.setRole("oper");
+        session.save(u);
+        users.add(u);
         return users;
     }
 

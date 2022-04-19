@@ -160,10 +160,14 @@ public class GameDataWindow extends javax.swing.JFrame {
                     return;
                 }
             }
+            if (this.product.getQuantity() == 0) {
+                JOptionPane.showMessageDialog(getRootPane(), "Game out of stock.");
+                return;
+            }
             if (Integer.parseInt(txtQuantity.getText()) > this.product.getQuantity()) {
                 JOptionPane.showMessageDialog(getRootPane(), "Not enough games in stock.");
                 return;
-            }
+            }          
             BigDecimal quan = new BigDecimal(Integer.parseInt(txtQuantity.getText()));
             if (quan.compareTo(BigDecimal.ZERO) <= 0) {
                 JOptionPane.showMessageDialog(getRootPane(), "Quantity needs to be a positive number.");
